@@ -137,21 +137,23 @@ namespace Lab3
             int k = int.Parse(Console.ReadLine());
 
             if (k > array.Length) {
-                k = k % array.Length;
+                k = k % array.Length; //3
             }
 
-            int[] changed = array;
-            for (int i = 0; i < changed.Length; i++)
+            int[] changed = array.ToArray();
+            int counter = 0;
+            for (int i = 0; i < changed.Length; i++) //c.L = 9
             {
-                if (i + k < changed.Length)
+                
+                if (i + k >= changed.Length)
                 {
-                    changed[i] = array[i + k];
+                    changed[i] = array[counter];
+                    counter++;
+                    continue;
                 }
-                else
-                {
-                    changed[i] = array[k];
-                }
+                changed[i] = array[i + k];
             }
+
 
             for (int i = 0; i < changed.Length; i++)
             {
