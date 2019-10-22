@@ -31,6 +31,7 @@ namespace Lab3
                     break;
                 case 4:
                     Console.WriteLine("Четвёртая задача.\n");
+                    four();
                     break;
                 case 5:
                     Console.WriteLine("Пятая задача.\n");
@@ -137,12 +138,12 @@ namespace Lab3
             int k = int.Parse(Console.ReadLine());
 
             if (k > array.Length) {
-                k = k % array.Length; //3
+                k = k % array.Length;
             }
 
             int[] changed = array.ToArray();
             int counter = 0;
-            for (int i = 0; i < changed.Length; i++) //c.L = 9
+            for (int i = 0; i < changed.Length; i++)
             {
                 
                 if (i + k >= changed.Length)
@@ -154,10 +155,133 @@ namespace Lab3
                 changed[i] = array[i + k];
             }
 
-
             for (int i = 0; i < changed.Length; i++)
             {
                 Console.Write($"{changed[i]} ");
+            }
+        }
+
+        static int[,] plus(int[,] a, int[,] b)
+        {
+            int[,] result = new int[3,3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    result[i, j] = a[i,j] + b[i,j];
+                }
+            }
+            double temp = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    temp += result[i, j];
+                }
+            }
+            Console.WriteLine($"Среднее значение элементов: {temp/9}");
+            return result;
+
+        }
+        static int[,] minus(int[,] a, int[,] b)
+        {
+            int[,] result = new int[3, 3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    result[i, j] = a[i, j] - b[i, j];
+                }
+            }
+
+            double temp = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    temp += result[i, j];
+                }
+            }
+            Console.WriteLine($"Среднее значение элементов: {temp / 9}");
+            return result;
+        }
+
+        static void four()
+        {
+            int low = 1, high = 9;
+            Random rand = new Random();
+            int[,] a = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    a[i, j] = rand.Next(low, high);
+                }
+            }
+
+            int[,] b = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    b[i, j] = rand.Next(low, high);
+                }
+            }
+
+            Console.WriteLine("Массив a: ");
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write($"{a[i, j]} ");
+                }
+                Console.Write("\n");
+            }
+
+            Console.WriteLine("Массив b: ");
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write($"{b[i, j]} ");
+                }
+                Console.Write("\n");
+            }
+
+            Console.WriteLine("Выберите действие с массивами (1 - сложение или 2 - вычитание)");
+            int selector = int.Parse(Console.ReadLine());
+            int[,] result;
+            switch (selector)
+            {
+                
+                case 1:
+                    result = plus(a, b);
+                    Console.WriteLine("Результирующий массив: ");
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.Write($"{result[i, j]} ");
+                        }
+                    Console.Write("\n");
+                    }
+                    break;
+                case 2:
+                    result = minus(a, b);
+                    Console.WriteLine("Результирующий массив: ");
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.Write($"{result[i, j]} ");
+                        }
+                        Console.Write("\n");
+                    }
+                    break;
+                default:
+                    break;
+
             }
         }
     }
