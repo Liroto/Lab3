@@ -338,7 +338,7 @@ namespace Lab3
                     temp = 0;
                     do
                     {   
-                        result[i, j] += a[rowa_counter, columna_counter] * b[rowb_counter, columnb_counter];
+                        result[i, j] += a[rowa_counter, j] * b[i, columnb_counter];
                         temp = result[i, j];
                         columnb_counter++;
                         rowa_counter++;
