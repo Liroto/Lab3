@@ -35,6 +35,7 @@ namespace Lab3
                     break;
                 case 5:
                     Console.WriteLine("Пятая задача.\n");
+                    five();
                     break;
                 case 6:
                     Console.WriteLine("Шестая задача.\n");
@@ -282,6 +283,108 @@ namespace Lab3
                 default:
                     break;
 
+            }
+        }
+
+        static void five()
+        {
+            int low = 1, high = 9;
+            Random rand = new Random();
+            int[,] a = new int[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    a[i, j] = rand.Next(low, high);
+                }
+            }
+
+            int[,] b = new int[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    b[i, j] = rand.Next(low, high);
+                }
+            }
+
+            Console.WriteLine("Массив a: ");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write($"{a[i, j]} ");
+                }
+                Console.Write("\n");
+            }
+
+            Console.WriteLine("Массив b: ");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write($"{b[i, j]} ");
+                }
+                Console.Write("\n");
+            }
+
+            int[,] result = new int[5, 5];
+            int rowa_counter = 0, columna_counter = 0, rowb_counter = 0, columnb_counter = 0, help_counter = 0, temp = 0, n = 0;
+            Console.WriteLine("Результирующий массив: ");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {   
+                    temp = 0;
+                    do
+                    {   
+                        result[i, j] += a[rowa_counter, columna_counter] * b[rowb_counter, columnb_counter];
+                        temp = result[i, j];
+                        columnb_counter++;
+                        rowa_counter++;
+                    }
+                    while (columnb_counter < 5 || rowa_counter < 5);
+                    switch (help_counter)
+                    {
+                        case 0:
+                            rowb_counter = 1;
+                            columna_counter = 1;
+                            columnb_counter = 0;
+                            rowa_counter = 0;
+                            help_counter++;
+                            break;
+                        case 1:
+                            rowb_counter = 2;
+                            columna_counter = 2;
+                            columnb_counter = 0;
+                            rowa_counter = 0;
+                            help_counter++;
+                            break;
+                        case 2:
+                            rowb_counter = 3;
+                            columna_counter = 3;
+                            columnb_counter = 0;
+                            rowa_counter = 0;
+                            help_counter++;
+                            break;
+                        case 3:
+                            rowb_counter = 4;
+                            columna_counter = 4;
+                            columnb_counter = 0;
+                            rowa_counter = 0;
+                            help_counter++;
+                            break;
+                        default:
+                            rowa_counter = 0;
+                            rowb_counter = 0;
+                            columna_counter = 0;
+                            columnb_counter = 0;
+                            help_counter = 0;
+                            break;
+                    }
+                    Console.Write($"{result[i, j]} ");
+                }
+                Console.Write("\n");
             }
         }
     }
