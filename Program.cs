@@ -11,7 +11,7 @@ namespace Lab3
         static void Main(string[] args)
         {
             int selector;
-            Console.Write("Выберите задание(1-8): ");
+            Console.Write("Выберите задание(1-10): ");
             selector = int.Parse(Console.ReadLine());
             switch (selector)
             {
@@ -48,6 +48,14 @@ namespace Lab3
                 case 8:
                     Console.WriteLine("Восьмая задача.\n");
                     eight();
+                    break;
+                case 9:
+                    Console.WriteLine("1 индивидуальная задача.\n");
+                    //eight();
+                    break;
+                case 10:
+                    Console.WriteLine("2 индивидуальная задача.\n");
+                    specialsecond();
                     break;
                 default:
                     break;
@@ -438,7 +446,7 @@ namespace Lab3
         static void seventh()
         {
             Console.Write("Введите N-ое число из ряда Фибоначчи: ");
-            int N = Convert.ToInt32(Console.ReadLine());
+            int N = int.Parse(Console.ReadLine());
             int first = 1, second = 1;
             Console.WriteLine();
             Console.WriteLine("{0}  \n{1}", first, second);
@@ -448,7 +456,7 @@ namespace Lab3
 
         static void eight()
         {
-            int min = -99, max = 99, det = 0, minor = 0, alg_comp = 0; ;
+            int min = -99, max = 99, det = 0, minor = 0, alg_comp = 0;
             Random rand = new Random();
             Console.Write("Введите значение 'N' для матирцы NxN: ");
             int N = int.Parse(Console.ReadLine());
@@ -464,6 +472,47 @@ namespace Lab3
                 Console.WriteLine();
             }
             
+        }
+
+        //Написать программу, которая выводит на экран «1», если в первой половине массива
+        //отрицательных чисел больше, чем во второй, «2», если в первой половине массива
+        //отрицательных чисел меньше, и «0», если в первой половине массива столько же
+        //отрицательных чисел, сколько и во второй.
+        public static void specialsecond()
+        {
+            int min = -50, max = 50;
+            Console.Write("Введите длину массива(чётную): ");
+            int n = int.Parse(Console.ReadLine());
+            Random rand = new Random();
+            do
+            {
+                Console.Write("Введите длину массива(чётную): ");
+                n = int.Parse(Console.ReadLine());
+            }
+            while (n % 2 != 0);
+            int[] array = new int [n];
+            for (int i = 0; i < n; i++)
+            {
+                array[i] = rand.Next(min,max);
+                Console.Write($"{array[i]} ");
+            }
+            Console.WriteLine();
+
+            int negative_left = 0, negative_right = 0;
+
+            for (int i = 0; i < n / 2; i++)
+            {
+                if (array[i] < 0) negative_left++;
+            }
+
+            for (int i = n-1; i > n / 2; i--)
+            {
+                if (array[i] < 0) negative_right++;
+            }
+
+            if (negative_left > negative_right) Console.WriteLine('1');
+            else if (negative_right > negative_left) Console.WriteLine('2');
+            else Console.WriteLine('0');
         }
     }
 }
