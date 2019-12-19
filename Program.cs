@@ -39,12 +39,15 @@ namespace Lab3
                     break;
                 case 6:
                     Console.WriteLine("Шестая задача.\n");
+                    six();
                     break;
                 case 7:
                     Console.WriteLine("Седьмая задача.\n");
+                    seventh();
                     break;
                 case 8:
                     Console.WriteLine("Восьмая задача.\n");
+                    eight();
                     break;
                 default:
                     break;
@@ -80,7 +83,7 @@ namespace Lab3
 
             int reverser = 0;
             int[] reversed = new int[lenghth];
-            for (int i = lenghth-1; i > -1; i--)
+            for (int i = lenghth - 1; i > -1; i--)
             {
                 reversed[i] = array[reverser];
                 reverser++;
@@ -89,7 +92,7 @@ namespace Lab3
             int counter2 = 0;
             for (int i = 0; i < lenghth; i++)
             {
-                if (reversed[i] < 0) continue; 
+                if (reversed[i] < 0) continue;
                 Console.Write($"{reversed[i]} ");
                 counter2++;
                 if (counter2 % 10 == 0)
@@ -114,12 +117,14 @@ namespace Lab3
                 Console.Write("\n");
             }
 
-            int[,] rotate = new int [7,7];
+            int[,] rotate = new int[7, 7];
             Console.WriteLine();
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
                     rotate[i, j] = duo[j, i];
-                    
+
                     Console.Write($"{rotate[i, j]} ");
                 }
                 Console.Write("\n");
@@ -129,7 +134,7 @@ namespace Lab3
         static void third()
         {
             int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            
+
             for (int i = 0; i < array.Length; i++)
             {
                 Console.Write($"{array[i]} ");
@@ -138,7 +143,8 @@ namespace Lab3
             Console.Write("\nНа сколько позиций вы хотите сдвинуть массив? ");
             int k = int.Parse(Console.ReadLine());
 
-            if (k > array.Length) {
+            if (k > array.Length)
+            {
                 k = k % array.Length;
             }
 
@@ -146,7 +152,7 @@ namespace Lab3
             int counter = 0;
             for (int i = 0; i < changed.Length; i++)
             {
-                
+
                 if (i + k >= changed.Length)
                 {
                     changed[i] = array[counter];
@@ -164,12 +170,12 @@ namespace Lab3
 
         static int[,] plus(int[,] a, int[,] b)
         {
-            int[,] result = new int[3,3];
+            int[,] result = new int[3, 3];
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    result[i, j] = a[i,j] + b[i,j];
+                    result[i, j] = a[i, j] + b[i, j];
                 }
             }
             double temp = 0;
@@ -180,7 +186,7 @@ namespace Lab3
                     temp += result[i, j];
                 }
             }
-            Console.WriteLine($"Среднее значение элементов: {temp/9}");
+            Console.WriteLine($"Среднее значение элементов: {temp / 9}");
             return result;
 
         }
@@ -255,7 +261,7 @@ namespace Lab3
             int[,] result;
             switch (selector)
             {
-                
+
                 case 1:
                     result = plus(a, b);
                     Console.WriteLine("Результирующий массив: ");
@@ -265,7 +271,7 @@ namespace Lab3
                         {
                             Console.Write($"{result[i, j]} ");
                         }
-                    Console.Write("\n");
+                        Console.Write("\n");
                     }
                     break;
                 case 2:
@@ -329,63 +335,135 @@ namespace Lab3
             }
 
             int[,] result = new int[5, 5];
-            int rowa_counter = 0, columna_counter = 0, rowb_counter = 0, columnb_counter = 0, help_counter = 0, temp = 0, n = 0;
             Console.WriteLine("Результирующий массив: ");
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < result.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
-                {   
-                    temp = 0;
-                    do
-                    {   
-                        result[i, j] += a[rowa_counter, j] * b[i, columnb_counter];
-                        temp = result[i, j];
-                        columnb_counter++;
-                        rowa_counter++;
-                    }
-                    while (columnb_counter < 5 || rowa_counter < 5);
-                    switch (help_counter)
+                for (int j = 0; j < result.GetLength(1); j++)
+                {
+                    for (int k = 0; k < 5; k++)
                     {
-                        case 0:
-                            rowb_counter = 1;
-                            columna_counter = 1;
-                            columnb_counter = 0;
-                            rowa_counter = 0;
-                            help_counter++;
-                            break;
-                        case 1:
-                            rowb_counter = 2;
-                            columna_counter = 2;
-                            columnb_counter = 0;
-                            rowa_counter = 0;
-                            help_counter++;
-                            break;
-                        case 2:
-                            rowb_counter = 3;
-                            columna_counter = 3;
-                            columnb_counter = 0;
-                            rowa_counter = 0;
-                            help_counter++;
-                            break;
-                        case 3:
-                            rowb_counter = 4;
-                            columna_counter = 4;
-                            columnb_counter = 0;
-                            rowa_counter = 0;
-                            help_counter++;
-                            break;
-                        default:
-                            rowa_counter = 0;
-                            rowb_counter = 0;
-                            columna_counter = 0;
-                            columnb_counter = 0;
-                            help_counter = 0;
-                            break;
+                        result[i, j] += a[i, k] * b[k, j];
                     }
                     Console.Write($"{result[i, j]} ");
                 }
                 Console.Write("\n");
             }
+        }
+
+
+
+        //6-е задание
+        public static int sum = 0;
+        public static int sumIterative(int[] a)
+        {
+            int sum = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                sum += a[i];
+            }
+            return sum;
+        }
+        public static int sumRecursive(int[] b, int iterator)
+        {
+            if (iterator < b.Length)
+            {
+                sum += b[iterator];
+                iterator++;
+                sumRecursive(b, iterator);
+            }
+            return sum;
+        }
+        public static int minIterative(int[] c)
+        {
+            int min = c[0];
+            for (int i = 0; i < c.Length; i++)
+            {
+                if (min > c[i])
+                {
+                    min = c[i];
+                }
+            }
+            return min;
+        }
+        public static int minRecursive(int[] d, int counter, int minValue)
+        {
+            if (counter == d.Length)
+            {
+                return minValue;
+            }
+            else
+            {
+                minValue = Math.Min(minValue, d[counter]);
+                counter++;
+                return minRecursive(d, counter, minValue);
+            }
+
+        }
+
+        static void six()
+        {
+            int iterator = 0;
+            int[] arr = { 3, 5, 65, 3, 1, 12, 7, 9 };
+            Console.Write("Введите функцию 1-4: ");
+            int pointer = int.Parse(Console.ReadLine());
+            switch (pointer) {
+                case 1:
+                    Console.WriteLine(sumIterative(arr));
+                    break;
+                case 2:
+                    Console.WriteLine(sumRecursive(arr, iterator));
+                    break;
+                case 3:
+                    Console.WriteLine(minIterative(arr));
+                    break;
+                case 4:
+                    Console.WriteLine("Min element is: "+minRecursive(arr, 0, Int32.MaxValue));
+                    Console.ReadKey();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        public static int fibonacci(int N,int one,int two,int sum)
+        {
+            if (N == 0) return 0;
+            sum = one + two;
+            Console.WriteLine(sum);
+            return (fibonacci(N - 1, two, sum, sum));
+
+        }
+
+        static void seventh()
+        {
+            Console.Write("Введите N-ое число из ряда Фибоначчи: ");
+            int N = Convert.ToInt32(Console.ReadLine());
+            int first = 1, second = 1;
+            Console.WriteLine();
+            Console.WriteLine("{0}  \n{1}", first, second);
+            int sum = 0;
+            fibonacci(N, first, second, sum);
+        }
+
+        static void eight()
+        {
+            int min = -99, max = 99, det = 0, minor = 0, alg_comp = 0; ;
+            Random rand = new Random();
+            Console.Write("Введите значение 'N' для матирцы NxN: ");
+            int N = int.Parse(Console.ReadLine());
+            Console.WriteLine("Матрица: ");
+            int[,] matrix = new int[N, N];
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    matrix[i, j] = rand.Next(min, max);
+                    Console.Write($"{matrix[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+            
         }
     }
 }
